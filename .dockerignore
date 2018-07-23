@@ -1,0 +1,8 @@
+.git
+.gitignore
+.dockerignore
+composer.phar
+__*
+Dockerfile
+docker-start.sh
+php-local-server.php
