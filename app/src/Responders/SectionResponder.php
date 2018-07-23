@@ -23,7 +23,6 @@ class SectionResponder extends AbstractResponder {
 
     /**
      * @param \Slim\Http\Response $response
-     * @param                     $template
      * @param array               $data
      * @return \Psr\Http\Message\ResponseInterface
      */
