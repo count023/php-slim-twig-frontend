@@ -1,6 +1,7 @@
 # php-slim-twig-frontend
 
-PHP frontend for a Content-API for news using Slim and Twig, following the ADR-Pattern and should be run be a react server
+PHP frontend for a Content-API for news using Slim and Twig,
+following the ADR-Pattern and should be run by a react server
 
 ## Usage
 You will need [composer](https://getcomposer.org/download/) and [docker](https://www.docker.com/get-docker) to setup this project:
