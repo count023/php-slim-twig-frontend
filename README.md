@@ -5,11 +5,9 @@ PHP frontend for a Content-API for news using Slim and Twig, following the ADR-P
 ## Usage
 You will need [composer](https://getcomposer.org/download/) and [docker](https://www.docker.com/get-docker) to setup this project:
 - clone it to a local directory of your choice,
-- get [composer](https://getcomposer.org/download/) and put it into the directory
-- run composer
-- get [docker](https://www.docker.com/get-docker)
-- start docker
-- run `./run-project-in-docker.sh` to (re)create the docker image and start a container
+- get [composer](https://getcomposer.org/download/), put it into the directory and run it 
+- get [docker](https://www.docker.com/get-docker) and start it
+- run `./run-project-in-docker.sh` to (re)create the docker image and start the container (it can be stopped by pressing ^C)
 - point your browser to `http://localhost:8888/`
 
 ## Resources
