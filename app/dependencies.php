@@ -16,6 +16,9 @@ $container['view'] = function ($c) {
     $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
     $view->addExtension(new Twig_Extension_Debug());
 
+    // Add globals
+    $view->getEnvironment()->addGlobal('currentUrl', $c->get('request')->getUri());
+
     return $view;
 };
 
@@ -41,6 +44,18 @@ $container['logger'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 
+$container[App\Responders\ResponderFactory::class] = function ($c) {
+    return new App\Responders\ResponderFactory($c['view']);
+};
+
 $container[App\Actions\Home::class] = function ($c) {
-    return new App\Actions\Home($c->get('view'), $c->get('logger'));
+    return new App\Actions\Home($c[App\Responders\ResponderFactory::class], $c->get('logger'));
+};
+
+$container[App\Actions\Section::class] = function ($c) {
+    return new App\Actions\Section($c[App\Responders\ResponderFactory::class], $c->get('logger'));
+};
+
+$container[App\Actions\Article::class] = function ($c) {
+    return new App\Actions\Article($c[App\Responders\ResponderFactory::class], $c->get('logger'));
 };

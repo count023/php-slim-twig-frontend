@@ -6,7 +6,7 @@
  * Time: 1:57 PM
  */
 
-namespace Blog\Responder;
+namespace App\Responders;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
@@ -15,7 +15,7 @@ use Slim\Views\Twig;
  *
  * @package Blog\Responder
  */
-abstract class Responder {
+abstract class AbstractResponder {
     /**
      * @var \Slim\Views\Twig
      */

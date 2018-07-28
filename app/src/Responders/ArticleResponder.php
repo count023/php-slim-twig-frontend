@@ -6,10 +6,10 @@ namespace App\Responders;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 
-class SectionResponder extends AbstractResponder {
+class ArticleResponder extends AbstractResponder {
 
     /**
-     * SectionResponder constructor.
+     * ArticleResponder constructor.
      * @param Twig $twig
      * @param string $htmlTemplateFile
      */
