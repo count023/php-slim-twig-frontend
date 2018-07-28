@@ -1,12 +1,12 @@
 <?php
-namespace App\Action;
+namespace App\Actions;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-final class HomeAction
+final class Home
 {
     private $view;
     private $logger;
