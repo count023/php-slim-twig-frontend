@@ -1,14 +1,14 @@
 {
-    "name": "akrabat/slim3-skeleton",
-    "description": "Simple Slim Framework 3 skeleton with Twig & Monolog.",
+    "name": "count023/php-slim-twig-frontend",
+    "description": "PHP frontend for a Content-API for news using Slim and Twig, following the ADR-Pattern and should be run by a react server",
     "license": "BSD-3-Clause",
     "type": "project",
-    "keywords": ["slim-framework", "skeleton"],
+    "keywords": ["slim-framework", "slim3", "twig", "ADR", "react-server", "monolog"],
     "authors": [
         {
-            "name": "Rob Allen",
-            "email": "rob@akrabat.com",
-            "homepage": "http://akrabat.com"
+            "name": "Alexis Kremin",
+            "email": "alexis.kremin@frenet.de",
+            "homepage": "http://www.a-kremin.de/"
         }
     ],
     "autoload": {
@@ -20,6 +20,7 @@
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.0",
         "slim/flash": "^0.1.0",
-        "monolog/monolog": "^1.13"
+        "monolog/monolog": "^1.13",
+        "aura/payload": "^3.0"
     }
 }

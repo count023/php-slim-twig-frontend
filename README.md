@@ -6,7 +6,8 @@ following the ADR-Pattern and should be run by a react server
 ## Usage
 You will need [composer](https://getcomposer.org/download/) and [docker](https://www.docker.com/get-docker) to setup this project:
 - clone it to a local directory of your choice,
-- get [composer](https://getcomposer.org/download/), put it into the directory and run it 
+- get [composer](https://getcomposer.org/download/), put it into the directory and run it
+  - help for ipv6 issue of composer: https://getcomposer.org/doc/articles/troubleshooting.md#operation-timed-out-ipv6-issues-
 - get [docker](https://www.docker.com/get-docker) and start it
 - run `./run-project-in-docker.sh` to (re)create the docker image and start the container (it can be stopped by pressing ^C)
 - point your browser to `http://localhost:8888/`
