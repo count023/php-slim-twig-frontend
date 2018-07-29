@@ -6,6 +6,7 @@
  */
 
 namespace App\Responders;
+
 use Slim\Views\Twig;
 
 /**

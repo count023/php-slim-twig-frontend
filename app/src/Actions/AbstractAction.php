@@ -53,7 +53,7 @@ abstract class AbstractAction {
      * @param array $args
      * @return Response
      */
-    public function __invoke(Request $request, Response $response, array $args){
+    public function __invoke(Request $request, Response $response, array $args) {
 
         $this->logger->info($this->getClassName() . " dispatched with args: \n" . var_export($args, true) . "\n\n");
 
