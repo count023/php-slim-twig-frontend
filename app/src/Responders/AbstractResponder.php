@@ -1,21 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Glenn
- * Date: 2015-09-02
+ * Created by count023 for php-slim-twig-frontend
+ * Date: 2018-07-21
  * Time: 1:57 PM
  */
 
 namespace App\Responders;
-use Slim\Http\Response;
 use Slim\Views\Twig;
 
 /**
- * Class Responder
+ * Class AbstractResponder
  *
- * @package Blog\Responder
+ * @package App\Responders
  */
-abstract class AbstractResponder {
+abstract class AbstractResponder implements ResponderInterface {
+
     /**
      * @var \Slim\Views\Twig
      */

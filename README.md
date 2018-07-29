@@ -17,7 +17,9 @@ You will need [composer](https://getcomposer.org/download/) and [docker](https:/
 - Twig: https://twig.symfony.com/
 
 ## Concepts
-- [ADR](https://github.com/pmjones/adr/blob/master/IMPLEMENTATION.md)
+- [ADR (1)](https://github.com/pmjones/adr/blob/master/IMPLEMENTATION.md)
+- [ADR (2)](http://paul-m-jones.com/archives/category/programming/adr)
+- [ADR-WidgetProblem](http://paul-m-jones.com/archives/6760)
 
 ## Inspired by:
 - Slim3 and Twig: https://github.com/akrabat/slim3-skeleton

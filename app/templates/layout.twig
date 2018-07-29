@@ -83,11 +83,12 @@
 
             <main class="main" role="main">
                 <div class="inline-overlay desktop-hide" id="inline-overlay"></div>
-                <div class="container-main clearfix">
-                    {% block content %}
 
-                    {% endblock %}
-                </div>
+                {% include "_breadcrumb.twig" %}
+
+                {% block content %}
+
+                {% endblock %}
             </main>
 
             {% block footer %}

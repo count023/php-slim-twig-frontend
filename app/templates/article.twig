@@ -10,9 +10,230 @@
 
 {% block content %}
 
-    <section class="container-stream">
-      <h1>ARTICLE</h1>
-    </section>
+<article class="article article--type-{{ article.contentType }} section-{{ article.homeSection.uniqueName | replace({' ': ''}) }}">
+    <div class="article__header">
+        <div id="fwid2" class="article__header__inner">
+            <div class="article__header__heading">
+                <div class="article__header__headline">
+                    <a href="/{{ article.homeSection.directoryPath }}" class="headline_section emph">
+                        {{ article.homeSection.name }}&nbsp;
+                    </a>
+                    <h2 itemprop="headline" class="article__header__headline__heading">
+                        {{ article.title }}
+                    </h2>
+                </div>
+                {% if article.tags | length > 0 %}
+                    <div class="emph-hashtags">
+                        {% for tag in article.tags %}
+                            <a href="/themen/{{ tag | replace({'#': ''}) }}/" class="emph" >{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="article__field__multi  article__field__multi-news author-info_wrapper-image  ">
+            <div class="author-info__name">
+                <address itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <span class="author-info__name-prefix">Artikel von: </span>
+                    <span class="author-info__name-text" itemprop="name">{{ article.fields.author_long }}</span>
+                </address>
+            </div>
+            <time class="teaser-stream-time " datetime="{{ (article.creationDate // 1000) | date('Y-m-d, H:i') }}">{{ (article.creationDate // 1000) | date('d.m.Y, H:i') }} Uhr</time>
+        </div>
+
+        <figure class="tests hero-img ">
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <meta itemprop="url" content="https://img.futurezone.de/img/digital-life/crop214953719/7413836413-w960-cv16_9-q85/DrakeAuto.jpg"/>
+                <meta itemprop="width" content="960"/>
+                <meta itemprop="height" content="540"/>
+            </div>
+            <picture class="hero-img__img">
+                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                <source srcset="https://img.futurezone.de/img/digital-life/crop214953719/8847608430-w420-cv16_9-q85/DrakeAuto.jpg" media="(max-width: 420px)" />
+                <source srcset="https://img.futurezone.de/img/digital-life/crop214953719/4610249218-w640-cv16_9-q85/DrakeAuto.jpg" media="(max-width: 640px)" />
+                <source srcset="https://img.futurezone.de/img/digital-life/crop214953719/7413836413-w960-cv16_9-q85/DrakeAuto.jpg" />
+                <!--[if IE 9]></video><![endif]-->
+                <img src="/img/placeholder.png" alt="Die neue Drake-Herausforderung kann schnell gefährlich werden-" title="Die neue Drake-Herausforderung kann schnell gefährlich werden-" width="960" height="540" class=""/>
+            </picture>
+            <figcaption class="hero-img__caption">
+                <div class="hero-img__text">Die neue Drake-Herausforderung kann schnell gefährlich werden-</div>
+                <div class="hero-img__credits">Foto:&nbsp;Screenshot/ The Blast</div>
+            </figcaption>
+        </figure>
+    </div>
+    <aside class="sidebar">
+        <div class="sidebar__column">
+            <!-- XHTML-Widget 211757175 - Start -->
+            <a href="https://www.futurezone.de/community/article211519315/futurezone-de-als-Newsletter.html?nocomments=true"><img src="https://www.futurezone.de/bin/src-211757139.png" /></a>
+            <!-- XHTML-Widget 211757175 - End -->
+            <div class="ad--marker">
+                <div id='de_futurezone_MR1' class="ad--marker-inner">
+                    <script type='text/javascript'>
+                        (function ($) {
+                            var opt_div = 'de_futurezone_MR1',
+                                    tmp = opt_div.split('-'),
+                                    slot = tmp[(tmp.length - 1)];
+
+                            window.googletag.cmd.push(function () {
+                                googletag.display(opt_div);
+                            });
+                        })(jQuery);
+                    </script>
+                </div>
+            </div>
+
+            <div class=" content--teaser--container clearfix trending " id="fwid3" data-url="https://www.futurezone.de/?widgetid=209267747&view=teaser&art=214953721&sec=29207">
+                <div class="block-header">
+
+                    <span class="block-header__icon">Die meistgelesenen Artikel</span>
+
+                </div>
+                <div class="collapsable__content">
+
+                    <ul class="teaser-list teaser-list--image">
+
+                        {# TODO: retrieve most read #}
+
+                        <li class="teaser-list__item">
+                            <article class="teaser teaser--small" data-article-id="213290011" >
+                                <a href="https://www.futurezone.de/digital-life/article213290011/Pornos-auf-Android-Geraeten-sind-keine-sichere-Sache.html"  title="Pornos auf Android-Geräten sind keine sichere Sache" data-tracking="contentteaser - teaser | 1" data-widget="Inhaltsteaser Meistgelesen [Fuzo]">
+                                    <picture class="teaser__img teaser__img--vertical teaser__img--article">
+                                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                        <source srcset="https://img.futurezone.de/img/digital-life/crop209920933/2789425798-w320-cv3_2-q85/Android-Tablet-Malware.jpg" />
+                                        <!--[if IE 9]></video><![endif]-->
+                                        <img src="https://www.futurezone.de/resources/1532523401/img/placeholder.png" alt="Ein Tablet, auf dem das Android-Maskottchen zu sehen ist. " title="1,2 Millionen Menschen, die Pornos auf Android-Geräten schauten, wurden im Vorjahr scheinbar gezielt mit Schadsoftware infiziert." width="320" height="213" class=""/>
+                                    </picture>
+                                    <div itemscope itemtype="http://schema.org/WebPageElement" class="teaser__header">
+                                        <span class="teaser__date">16.05.2018</span>
+                                        <span itemprop="name" content="Pornos auf Android-Geräten sind keine sichere Sache" class="teaser__headline">Pornos auf Android-Geräten sind keine sichere Sache</span>
+                                    </div>
+
+                                </a>
+                            </article>
+                        </li>
+                        <li class="teaser-list__item">
+                            <article class="teaser teaser--small teaser--noimg" data-article-id="214944319" >
+                                <a href="https://www.futurezone.de/produkte/article214944319/Apples-neues-iPhone-hat-einen-Fehler-der-nicht-behoben-werden-kann.html"  title="Apples neues iPhone 11 ist mit Absicht zu langsam" data-tracking="contentteaser - teaser | 2" data-widget="Inhaltsteaser Meistgelesen [Fuzo]">
+                                    <div itemscope itemtype="http://schema.org/WebPageElement" class="teaser__header">
+                                        <span class="teaser__date">27.07.2018</span>
+                                        <span itemprop="name" content="Apples neues iPhone 11 ist mit Absicht zu langsam" class="teaser__headline">Apples neues iPhone 11 ist mit Absicht zu langsam</span>
+                                    </div>
+                                </a>
+                            </article>
+                        </li>
+                        <li class="teaser-list__item">
+                            <article class="teaser teaser--small teaser--noimg" data-article-id="213223541" >
+                                <a href="https://www.futurezone.de/digital-life/article213223541/26-Dollar-fuer-einen-Whopper-Wenn-Burger-King-erklaert-was-Netzneutralitaet-bedeutet.html"  title="26 Dollar für einen Whopper: Wenn Burger King erklärt, was Netzneutralität bedeutet" data-tracking="contentteaser - teaser | 3" data-widget="Inhaltsteaser Meistgelesen [Fuzo]">
+                                    <div itemscope itemtype="http://schema.org/WebPageElement" class="teaser__header">
+                                        <span class="teaser__date">25.01.2018</span>
+                                        <span itemprop="name" content="26 Dollar für einen Whopper: Wenn Burger King erklärt, was Netzneutralität bedeutet" class="teaser__headline">26 Dollar für einen Whopper: Wenn Burger King erklärt, was Netzneutralität bedeutet</span>
+                                    </div>
+                                </a>
+                            </article>
+                        </li>
+                        <li class="teaser-list__item">
+                            <article class="teaser teaser--small teaser--noimg" data-article-id="214938781" >
+                                <a href="https://www.futurezone.de/produkte/article214938781/Huawei-will-Samsung-zusammenfalten.html"  title="Huawei will Samsung zusammenfalten" data-tracking="contentteaser - teaser | 4" data-widget="Inhaltsteaser Meistgelesen [Fuzo]">
+                                    <div itemscope itemtype="http://schema.org/WebPageElement" class="teaser__header">
+                                        <span class="teaser__date">26.07.2018</span>
+                                        <span itemprop="name" content="Huawei will Samsung zusammenfalten" class="teaser__headline">Huawei will Samsung zusammenfalten</span>
+                                    </div>
+                                </a>
+                            </article>
+                        </li>
+                        <li class="teaser-list__item">
+                            <article class="teaser teaser--small teaser--noimg" data-article-id="214924163" >
+                                <a href="https://www.futurezone.de/digital-life/article214924163/Gruselig-Deshalb-ruft-euch-WhatsApp-Puppe-Momo-mitten-in-der-Nacht-an.html"  title="Gruselig! Die WhatsApp-Puppe &#034;Momo&#034; kommt nachts zu euch" data-tracking="contentteaser - teaser | 5" data-widget="Inhaltsteaser Meistgelesen [Fuzo]">
+                                    <div itemscope itemtype="http://schema.org/WebPageElement" class="teaser__header">
+                                        <span class="teaser__date">26.07.2018</span>
+                                        <span itemprop="name" content="Gruselig! Die WhatsApp-Puppe &#034;Momo&#034; kommt nachts zu euch" class="teaser__headline">Gruselig! Die WhatsApp-Puppe &#034;Momo&#034; kommt nachts zu euch</span>
+                                    </div>
+                                </a>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="ad--marker">
+                <div id='de_futurezone_MR2' class="ad--marker-inner">
+                    <script type='text/javascript'>
+                        (function ($) {
+                            var opt_div = 'de_futurezone_MR2',
+                                    tmp = opt_div.split('-'),
+                                    slot = tmp[(tmp.length - 1)];
+
+                            window.googletag.cmd.push(function () {
+                                googletag.display(opt_div);
+                            });
+                        })(jQuery);
+                    </script>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+    <div class="article__body">
+        <div class="socialbar " id="socialbar_fwid4" data-stickyoffset="365">
+            <div class="socialbar__channels socialbar__channels--square">
+
+                <div class="share-button mobile-only whatsapp" title="Whatsapp">
+                    <a href="whatsapp://send?text={{ article.title | replace({' ': '+'}) }}%0Ahttps%3A%2F%2Fwww.futurezone.de%2F{{ article.articleId }}" class="share-button__icon"></a>
+                </div>
+                <div class="share-button facebook" title="Facebook" data-text="{{ article.title }}" data-url="https://www.futurezone.de/{{ article.articleId }}">
+                    <span class="share-button__icon"></span>
+                    <span class="share-button__count">0</span>
+                </div>
+                <div class="share-button twitter" title="Twitter" data-text="{{ article.title }}" data-url="https://www.futurezone.de/{{ article.articleId }}">
+                    <span class="share-button__icon"></span>
+                    <span class="share-button__count">0</span>
+                </div>
+                <div class="share-button google-plus" title="Google+" data-text="{{ article.title }}" data-url="https://www.futurezone.de/{{ article.articleId }}">
+                    <span class="share-button__icon"></span>
+                </div>
+                <div class="share-button email">
+                    <a href="javascript:mailRecommendationLightbox(214953721)" class="share-button__icon" title="Als E-Mail versenden"></a>
+                </div>
+                <div class="share-button print">
+                    <span class="share-button__icon" title="Drucken"></span>
+                </div>
+            </div>
+        </div>
+        <script>
+            var canonicalUrl = jQuery("link[rel=canonical]").attr("href");
+
+            jQuery(window).on("load", function() {
+                if (window.location.protocol !== "https:") {
+                    var urlProtocol = "http:";
+                }
+                else {
+                    var urlProtocol = "https:";
+                }
+
+                var graphUrl = urlProtocol + "//graph.facebook.com/v2.8/?id=" + canonicalUrl + "&access_token=" + "1882891838597029|Mtmph3Z4njee5VU3JJB3NCawIYw";
+
+                try {
+                    FB.api(graphUrl, function (data) {
+                        if (data.share !== undefined) {
+                            jQuery(".facebook").find(".share-button__count").text(data.share.share_count);
+                        }
+                    });
+                }
+                catch(err) {
+                    window.console.log(err.message);
+                }
+            });
+        </script>
+
+        <div class="teaser teaser-article-summary ">
+            {{ article.fields.intro }}
+        </div>
+
+        {{ article.fields.body | raw }}
+
+    </div>
+</article>
 
 {% endblock %}
 

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Created by count023 for php-slim-twig-frontend
+ * Date: 28.07.2018
+ * Time: 23:08
+ */
 
 namespace App\Responders;
 
@@ -19,6 +24,26 @@ class ResponderFactory {
      */
     public function __construct(Twig $twig) {
         $this->twig = $twig;
+    }
+
+    /**
+     * @param string $className
+     * @return ResponderInterface|null
+     */
+    public function getResponderByClassName(string $className) {
+        $responder = null;
+        switch ($className) {
+            case 'App\Actions\Home':
+                $responder = $this->getHomeResponder();
+                break;
+            case 'App\Actions\Section':
+                $responder = $this->getSectionResponder();
+                break;
+            case 'App\Actions\Article':
+                $responder = $this->getArticleResponder();
+                break;
+        }
+        return $responder;
     }
 
     /**

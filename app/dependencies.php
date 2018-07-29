@@ -8,6 +8,10 @@ $container = $app->getContainer();
 // -----------------------------------------------------------------------------
 
 // Twig
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \Slim\Views\Twig
+ */
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
     $view = new Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
@@ -23,7 +27,7 @@ $container['view'] = function ($c) {
 };
 
 // Flash messages
-$container['flash'] = function ($c) {
+$container['flash'] = function () {
     return new Slim\Flash\Messages;
 };
 
@@ -32,6 +36,10 @@ $container['flash'] = function ($c) {
 // -----------------------------------------------------------------------------
 
 // monolog
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \Monolog\Logger
+ */
 $container['logger'] = function ($c) {
     $settings = $c->get('settings');
     $logger = new Monolog\Logger($settings['logger']['name']);
@@ -44,18 +52,58 @@ $container['logger'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Responders\ResponderFactory
+ */
 $container[App\Responders\ResponderFactory::class] = function ($c) {
     return new App\Responders\ResponderFactory($c['view']);
 };
 
+
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Domain\Home
+ */
+$container[App\Domain\Home::class] = function ($c) {
+    return new App\Domain\Home($c->get('logger'));
+};
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Actions\Home
+ */
 $container[App\Actions\Home::class] = function ($c) {
-    return new App\Actions\Home($c[App\Responders\ResponderFactory::class], $c->get('logger'));
+    return new App\Actions\Home($c[App\Responders\ResponderFactory::class], $c[App\Domain\Home::class], $c->get('logger'));
 };
 
+
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Domain\Section
+ */
+$container[App\Domain\Section::class] = function ($c) {
+    return new App\Domain\Section($c->get('logger'));
+};
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Actions\Section
+ */
 $container[App\Actions\Section::class] = function ($c) {
-    return new App\Actions\Section($c[App\Responders\ResponderFactory::class], $c->get('logger'));
+    return new App\Actions\Section($c[App\Responders\ResponderFactory::class], $c[App\Domain\Section::class], $c->get('logger'));
 };
 
+
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Domain\Article
+ */
+$container[App\Domain\Article::class] = function ($c) {
+    return new App\Domain\Article($c->get('logger'));
+};
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Actions\Article
+ */
 $container[App\Actions\Article::class] = function ($c) {
-    return new App\Actions\Article($c[App\Responders\ResponderFactory::class], $c->get('logger'));
+    return new App\Actions\Article($c[App\Responders\ResponderFactory::class], $c[App\Domain\Article::class], $c->get('logger'));
 };

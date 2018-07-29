@@ -7,18 +7,16 @@
 
 namespace App\Responders;
 
-
 use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Response;
 
-class SectionResponder extends AbstractResponder {
+interface ResponderInterface {
 
     /**
      * @param Response $response
      * @param array $data
      * @return ResponseInterface
      */
-    public function renderHtml(Response $response, array $data = []) {
-        return $this->view->render($response, $this->htmlTemplateFile, $data);
-    }
+    public function renderHtml(Response $response, array $data);
+
 }

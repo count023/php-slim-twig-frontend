@@ -1,0 +1,37 @@
+{% if article or section %}
+    <div id="breadcrumb" class="breadcrumb clearfix">
+
+        <span class="breadcrumb__item" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+            <a href="/" class="breadcrumb__link" itemprop="url">
+                <span class="breadcrumb__title" itemprop="title">
+                    Home
+                </span>
+            </a>
+        </span>
+        {% if section %}
+            <span class="breadcrumb__item breadcrumb__item--last" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                –
+                <h1 class="breadcrumb__title breadcrumb__title--section" itemprop="title">
+                    {{ section.title }}
+                </h1>
+            </span>
+        {% elseif article %}
+            <span class="breadcrumb__item" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                |
+                <a href="/{{ article.homeSection.directoryPath }}" class="breadcrumb__link" itemprop="url">
+                    <span class="breadcrumb__title" itemprop="title">
+                        {{ article.homeSection.name }}
+                    </span>
+                </a>
+            </span>
+
+            <span class="breadcrumb__item breadcrumb__item--seo"> |</span>
+            <h1>
+                <span class="breadcrumb__item breadcrumb__item--last" itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
+                    <span class="breadcrumb__title breadcrumb__title--seo" itemprop="title">{{ article.fields.seo_title }}</span>
+                </span>
+            </h1>
+        {% endif %}
+
+    </div>
+{% endif %}
