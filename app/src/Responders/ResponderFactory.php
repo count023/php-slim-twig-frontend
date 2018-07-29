@@ -33,13 +33,13 @@ class ResponderFactory {
     public function getResponderByClassName(string $className) {
         $responder = null;
         switch ($className) {
-            case 'App\Actions\Home':
+            case 'App\Actions\HomeAction':
                 $responder = $this->getHomeResponder();
                 break;
-            case 'App\Actions\Section':
+            case 'App\Actions\SectionAction':
                 $responder = $this->getSectionResponder();
                 break;
-            case 'App\Actions\Article':
+            case 'App\Actions\ArticleAction':
                 $responder = $this->getArticleResponder();
                 break;
         }

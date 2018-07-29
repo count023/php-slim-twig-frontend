@@ -1,7 +1,7 @@
 .idea
 /vendor/
-/logs/*
-!/logs/README.md
+/log/*
 __*/
 php-local-server.php
 composer.phar*
+cache/twig/**
