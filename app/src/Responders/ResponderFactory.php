@@ -43,6 +43,9 @@ class ResponderFactory {
                 $responder = $this->getArticleResponder();
                 break;
         }
+        if ($responder === null) {
+            throw new \RuntimeException("No responder found for given class name: '$className'");
+        }
         return $responder;
     }
 

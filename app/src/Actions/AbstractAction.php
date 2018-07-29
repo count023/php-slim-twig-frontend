@@ -41,7 +41,7 @@ abstract class AbstractAction {
     public function __construct(ResponderFactory $responderFactory, DomainInterface $domain, LoggerInterface $logger) {
         $this->logger = $logger;
 
-        $this->logger->debug("className: " . $this->getClassName());
+        $this->logger->debug("className: {class}", ['class' => $this->getClassName()]);
         $this->responder = $responderFactory->getResponderByClassName($this->getClassName());
 
         $this->domain = $domain;
@@ -55,7 +55,7 @@ abstract class AbstractAction {
      */
     public function __invoke(Request $request, Response $response, array $args): Response {
 
-        $this->logger->info($this->getClassName() . " dispatched with args: \n" . var_export($args, true) . "\n\n");
+        $this->logger->info('{className} dispatched with args: {args}', ['className' => $this->getClassName(), 'args' => var_export($args, true)]);
 
         $this->responder->renderHtml($response, $this->domain->fetchData($args));
 

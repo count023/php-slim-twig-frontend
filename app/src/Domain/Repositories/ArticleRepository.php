@@ -44,7 +44,7 @@ class ArticleRepository {
         try {
             $articleRawData = $this->requestRawData($articleId);
         } catch (\Exception $e) {
-            $this->logger->error("retrieving data from content-api fails with exception: {}", [$e->getMessage()]);
+            $this->logger->error('retrieving data from content-api fails with exception: {msg}', ['msg' => $e->getMessage()]);
         }
         if ($articleRawData !== null) {
             $articleData = json_decode($articleRawData, true);
