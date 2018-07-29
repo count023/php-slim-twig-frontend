@@ -7,6 +7,6 @@
 
 namespace App\Actions;
 
-final class Article extends AbstractAction {
 
+final class HomeAction extends AbstractAction {
 }

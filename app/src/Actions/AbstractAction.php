@@ -57,7 +57,7 @@ abstract class AbstractAction {
 
         $this->logger->info($this->getClassName() . " dispatched with args: \n" . var_export($args, true) . "\n\n");
 
-        $this->responder->renderHtml($response, $this->domain->getData($args));
+        $this->responder->renderHtml($response, $this->domain->fetchData($args));
 
         return $response;
     }

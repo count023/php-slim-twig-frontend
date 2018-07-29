@@ -14,6 +14,6 @@ interface DomainInterface {
      * @param array $args
      * @return array
      */
-    public function getData(array $args);
+    public function fetchData(array $args);
 
 }

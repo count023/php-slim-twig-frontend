@@ -36,3 +36,4 @@ require __DIR__ . '/../app/routes.php';
 
 // Run!
 $app->run();
+

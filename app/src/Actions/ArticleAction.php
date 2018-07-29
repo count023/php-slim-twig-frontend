@@ -7,5 +7,6 @@
 
 namespace App\Actions;
 
-final class Section extends AbstractAction {
+final class ArticleAction extends AbstractAction {
+
 }

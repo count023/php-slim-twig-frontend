@@ -70,10 +70,10 @@ $container[App\Domain\Home::class] = function ($c) {
 };
 /**
  * @param \Psr\Container\ContainerInterface $c
- * @return \App\Actions\Home
+ * @return \App\Actions\HomeAction
  */
-$container[App\Actions\Home::class] = function ($c) {
-    return new App\Actions\Home($c[App\Responders\ResponderFactory::class], $c[App\Domain\Home::class], $c->get('logger'));
+$container[App\Actions\HomeAction::class] = function ($c) {
+    return new App\Actions\HomeAction($c[App\Responders\ResponderFactory::class], $c[App\Domain\Home::class], $c->get('logger'));
 };
 
 
@@ -86,10 +86,10 @@ $container[App\Domain\Section::class] = function ($c) {
 };
 /**
  * @param \Psr\Container\ContainerInterface $c
- * @return \App\Actions\Section
+ * @return \App\Actions\SectionAction
  */
-$container[App\Actions\Section::class] = function ($c) {
-    return new App\Actions\Section($c[App\Responders\ResponderFactory::class], $c[App\Domain\Section::class], $c->get('logger'));
+$container[App\Actions\SectionAction::class] = function ($c) {
+    return new App\Actions\SectionAction($c[App\Responders\ResponderFactory::class], $c[App\Domain\Section::class], $c->get('logger'));
 };
 
 
@@ -102,8 +102,8 @@ $container[App\Domain\Article::class] = function ($c) {
 };
 /**
  * @param \Psr\Container\ContainerInterface $c
- * @return \App\Actions\Article
+ * @return \App\Actions\ArticleAction
  */
-$container[App\Actions\Article::class] = function ($c) {
-    return new App\Actions\Article($c[App\Responders\ResponderFactory::class], $c[App\Domain\Article::class], $c->get('logger'));
+$container[App\Actions\ArticleAction::class] = function ($c) {
+    return new App\Actions\ArticleAction($c[App\Responders\ResponderFactory::class], $c[App\Domain\Article::class], $c->get('logger'));
 };
