@@ -19,14 +19,26 @@ class Article extends AbstractDomain {
     private $repository;
 
     /**
+     * @var ArticleBodyParserService
+     */
+    private $bodyParser;
+
+    /**
      * Article constructor.
+     * @param LoggerInterface $logger
+     * @param ArticleRepository $repository
      */
     public function __construct(LoggerInterface $logger, ArticleRepository $repository) {
         parent::__construct($logger);
         $this->repository = $repository;
+
+        $this->bodyParser = new ArticleBodyParserService($this->logger);
     }
 
     /**
+     * TODO: send redirect if request uri does not fit to the article data uri
+     * TODO: use Payload object: https://github.com/auraphp/Aura.Payload
+     *
      * @param array $args the arguments passed by the request
      * @return array of the data to be passed to the Responder for the template
      */
@@ -34,9 +46,7 @@ class Article extends AbstractDomain {
 
         $articleData = $this->repository->fetchArticle($args['articleId']);
 
-        // TODO: implement ArticleBodyParser
-        //  - TODO: replace internal links in body
-        $articleData['fields']['body'] = str_replace('https://www.futurezone.de/', '/', $articleData['fields']['body']);
+        $articleData['fields']['body'] = $this->bodyParser->parse($articleData['fields']['body']);
 
         return ['article' => $articleData];
     }
