@@ -42,7 +42,7 @@ abstract class AbstractAction {
         $this->logger = $logger;
 
         $this->logger->debug("className: {class}", ['class' => $this->getClassName()]);
-        $this->responder = $responderFactory->getResponderByClassName($this->getClassName());
+        $this->responder = $responderFactory->getResponderByActionClassName($this->getClassName());
 
         $this->domain = $domain;
     }

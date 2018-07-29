@@ -30,7 +30,7 @@ class ResponderFactory {
      * @param string $className
      * @return ResponderInterface|null
      */
-    public function getResponderByClassName(string $className): ResponderInterface {
+    public function getResponderByActionClassName(string $className): ResponderInterface {
         $responder = null;
         switch ($className) {
             case 'App\Actions\HomeAction':
@@ -52,21 +52,21 @@ class ResponderFactory {
     /**
      * @return SectionResponder
      */
-    public function getHomeResponder(): SectionResponder {
+    protected function getHomeResponder(): SectionResponder {
         return new SectionResponder($this->twig, 'home.twig');
     }
 
     /**
      * @return SectionResponder
      */
-    public function getSectionResponder(): SectionResponder {
+    protected function getSectionResponder(): SectionResponder {
         return new SectionResponder($this->twig, 'section.twig');
     }
 
     /**
      * @return ArticleResponder
      */
-    public function getArticleResponder(): ArticleResponder {
+    protected function getArticleResponder(): ArticleResponder {
         return new ArticleResponder($this->twig, 'article.twig');
     }
 
