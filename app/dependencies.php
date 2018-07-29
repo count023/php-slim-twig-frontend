@@ -93,13 +93,21 @@ $container[App\Actions\SectionAction::class] = function ($c) {
     return new App\Actions\SectionAction($c[App\Responders\ResponderFactory::class], $c[App\Domain\Section::class], $c->get('logger'));
 };
 
+/**
+ * @param \Psr\Container\ContainerInterface $c
+ * @return \App\Domain\Repositories\ArticleRepository
+ */
+$container[App\Domain\Repositories\ArticleRepository::class] = function ($c) {
+    $settings = $c->get('settings');
+    return new App\Domain\Repositories\ArticleRepository($c->get('logger'), $settings['app']['domain']['repositories']['article']);
+};
 
 /**
  * @param \Psr\Container\ContainerInterface $c
  * @return \App\Domain\Article
  */
 $container[App\Domain\Article::class] = function ($c) {
-    return new App\Domain\Article($c->get('logger'));
+    return new App\Domain\Article($c->get('logger'), $c[App\Domain\Repositories\ArticleRepository::class]);
 };
 /**
  * @param \Psr\Container\ContainerInterface $c

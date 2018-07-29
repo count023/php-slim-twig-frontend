@@ -8,7 +8,23 @@
 namespace App\Domain;
 
 
+use App\Domain\Repositories\ArticleRepository;
+use Psr\Log\LoggerInterface;
+
 class Article extends AbstractDomain {
+
+    /**
+     * @var ArticleRepository
+     */
+    private $repository;
+
+    /**
+     * Article constructor.
+     */
+    public function __construct(LoggerInterface $logger, ArticleRepository $repository) {
+        parent::__construct($logger);
+        $this->repository = $repository;
+    }
 
     /**
      * @param array $args the arguments passed by the request
@@ -16,15 +32,7 @@ class Article extends AbstractDomain {
      */
     public function fetchData(array $args): array {
 
-        $articleId = $args['articleId'];
-
-        # retrieve article data from Content-API
-        // TODO: handle 404 and other errors
-        //  - TODO: http://php.net/manual/de/function.file-get-contents.php
-        $start = microtime(true);
-        $articleData = json_decode(file_get_contents('http://18.194.207.3:8080/contents/' . $articleId), true);
-        $requestToContentApiDuration = round((microtime(true) - $start) * 1000, 2);
-        $this->logger->debug("articleData retrieved in " . $requestToContentApiDuration . "ms\n\n");
+        $articleData = $this->repository->fetchArticle($args['articleId']);
 
         // TODO: implement ArticleBodyParser
         //  - TODO: replace internal links in body

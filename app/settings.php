@@ -20,5 +20,15 @@ return [
             'name' => 'app',
             'path' => __DIR__ . '/../log/app.log',
         ],
-    ],
+
+        'app' => [
+            'domain' => [
+                'repositories' => [
+                    'article' => [
+                        'api-base-url' => 'http://18.194.207.3:8080/contents/'
+                    ]
+                ]
+            ]
+        ]
+    ]
 ];
