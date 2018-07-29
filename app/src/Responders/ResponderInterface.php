@@ -17,6 +17,6 @@ interface ResponderInterface {
      * @param array $data
      * @return ResponseInterface
      */
-    public function renderHtml(Response $response, array $data);
+    public function renderHtml(Response $response, array $data): ResponseInterface;
 
 }

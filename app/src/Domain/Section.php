@@ -14,7 +14,7 @@ class Section extends AbstractDomain {
      * @param array $args
      * @return array
      */
-    public function fetchData(array $args) {
+    public function fetchData(array $args): array {
         // TODO: Implement getData() method.
         return ['section' => ['title' => 'Section-Title']];
     }

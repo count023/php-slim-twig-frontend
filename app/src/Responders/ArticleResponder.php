@@ -18,7 +18,7 @@ class ArticleResponder extends AbstractResponder {
      * @param array $data
      * @return ResponseInterface
      */
-    public function renderHtml(Response $response, array $data = []) {
+    public function renderHtml(Response $response, array $data = []): ResponseInterface {
         return $this->view->render($response, $this->htmlTemplateFile, $data);
     }
 }
