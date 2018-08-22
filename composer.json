@@ -21,6 +21,7 @@
         "slim/twig-view": "^2.0",
         "slim/flash": "^0.1.0",
         "monolog/monolog": "^1.13",
-        "aura/payload": "^3.0"
+        "aura/payload": "^3.0",
+        "anujrnair/php-json-marshaller": "^1.0"
     }
 }

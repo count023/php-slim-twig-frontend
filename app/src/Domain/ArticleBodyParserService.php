@@ -49,7 +49,7 @@ class ArticleBodyParserService {
             }
         }
         $xpath = new \DOMXPath($domDocument);
-        // returns a list of all links with rel=nofollow
+        // returns a list of all links with href starts with "internal:"
         $nlist = $xpath->query("//a[starts-with(@href, 'internal:')]");
         foreach ($nlist as $anchor) {
             $this->logger->debug('anchor with internal: link: ', ['a' => $anchor->C14N()]);
@@ -73,12 +73,15 @@ class ArticleBodyParserService {
      * removes weird '<span class="scayt-misspell-word">' created by scayt in CKEditor
      * @see https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/104
      *
+     * TODO: '<span class="scayt-misspell-word">' with nested tags inside are not removed
+     *
      * @param string $articleBody
      * @return string
      */
     protected function removeScaytRubbish(string $articleBody): string {
-        $articleBody = preg_replace('/<span class="scayt-misspell-word">([^<>]*)<\/span>/', "$1", $articleBody);
-        $articleBody = preg_replace('/<span class="scayt-misspell-word">([^<>]*)<\/span>/', "$1", $articleBody);
+        // two times, 'cause is often nested inside each other for two times ...
+        $articleBody = preg_replace('/<span class="scayt-misspell-word">([^<]*)<\/span>/', "$1", $articleBody);
+        $articleBody = preg_replace('/<span class="scayt-misspell-word">([^<]*)<\/span>/', "$1", $articleBody);
         return $articleBody;
     }
 

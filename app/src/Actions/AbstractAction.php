@@ -14,6 +14,7 @@ use App\Responders\ResponderInterface;
 use Psr\Log\LoggerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Domain\Payload;
 
 abstract class AbstractAction {
 
@@ -50,14 +51,19 @@ abstract class AbstractAction {
     /**
      * @param Request $request
      * @param Response $response
-     * @param array $args
+     * @param array $requestPathInfo
      * @return Response
      */
-    public function __invoke(Request $request, Response $response, array $args): Response {
+    public function __invoke(Request $request, Response $response, array $requestPathInfo): Response {
 
-        $this->logger->info('{className} dispatched with args: {args}', ['className' => $this->getClassName(), 'args' => var_export($args, true)]);
+        $this->logger->info('{className} dispatched with args: {args}', ['className' => $this->getClassName(), 'args' => var_export($requestPathInfo, true)]);
 
-        $this->responder->renderHtml($response, $this->domain->fetchData($args));
+        $payload = new Payload($request, $requestPathInfo);
+
+        // enrich the payload
+        $payload = $this->domain->fetchData($payload);
+
+        $this->responder->renderHtml($response, $payload);
 
         return $response;
     }

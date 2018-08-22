@@ -36,18 +36,28 @@ class Article extends AbstractDomain {
     }
 
     /**
-     * TODO: send redirect if request uri does not fit to the article data uri
-     * TODO: use Payload object: https://github.com/auraphp/Aura.Payload
+     * TODO: marshalling the input data!
      *
-     * @param array $args the arguments passed by the request
-     * @return array of the data to be passed to the Responder for the template
+     * @param $payload Payload the request and the arguments passed by the request
+     * @return Payload of the data to be passed to the Responder for the template
      */
-    public function fetchData(array $args): array {
+    public function fetchData(Payload $payload): Payload {
 
-        $articleData = $this->repository->fetchArticle($args['articleId']);
+        $articleData = $this->repository->fetchArticle($payload->getRequestPathInfo()[REQUEST_PATH_INFO_ARTICLE_ID]);
 
-        $articleData['fields']['body'] = $this->bodyParser->parse($articleData['fields']['body']);
+        if ($articleData !== null) {
+            $articleData['fields']['body'] = $this->bodyParser->parse($articleData['fields']['body']);
+            $payload->setOutput(['article' => $articleData]);
 
-        return ['article' => $articleData];
+            if ($payload->getRequest()->getUri() == $articleData['articleUri']) {
+                $payload->setStatus(PayloadStatus::OK);
+            } else {
+                $payload->setStatus(PayloadStatus::MOVED_PERMANENTLY);
+            }
+        } else {
+            $payload->setStatus(PayloadStatus::NOT_FOUND);
+        }
+
+        return $payload;
     }
 }

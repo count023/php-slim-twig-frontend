@@ -8,6 +8,12 @@
 namespace App\Domain\Repositories;
 
 
+use App\Domain\Repositories\Model\Article;
+use PhpJsonMarshaller\Decoder\ClassDecoder;
+use PhpJsonMarshaller\Exception\JsonDecodeException;
+use PhpJsonMarshaller\Exception\UnknownPropertyException;
+use PhpJsonMarshaller\Marshaller\JsonMarshaller;
+use PhpJsonMarshaller\Reader\DoctrineAnnotationReader;
 use Psr\Log\LoggerInterface;
 
 class ArticleRepository {
@@ -20,7 +26,15 @@ class ArticleRepository {
     ];
     private static $STREAM_CONTEXT = null;
 
+    /**
+     * @var string
+     */
     private $apiBaseUri;
+
+    /**
+     * @var \PhpJsonMarshaller\Marshaller\JsonMarshaller
+     */
+    private $marshaller;
 
     /**
      * @var LoggerInterface
@@ -35,19 +49,21 @@ class ArticleRepository {
         $this->logger = $logger;
         self::$STREAM_CONTEXT = stream_context_create(self::REQUEST_OPTIONS);
         $this->apiBaseUri = $settings['api-base-url'];
+
+        $this->marshaller = new JsonMarshaller(new ClassDecoder(new DoctrineAnnotationReader()));
     }
 
     /**
      * retrieve article data from Content-API
-     * TODO: handle 404 and other errors
-     *  - TODO: http://php.net/manual/de/function.file-get-contents.php
      *
      * @param int $articleId
-     * @return array
+     * @return Article
+     * @throws JsonDecodeException
+     * @throws UnknownPropertyException
      */
-    public function fetchArticle(int $articleId): array {
+    public function fetchArticle(int $articleId): Article {
 
-        $articleData = null;
+        $article = null;
         $articleRawData = null;
 
         try {
@@ -56,12 +72,20 @@ class ArticleRepository {
             $this->logger->error('retrieving data from content-api fails with exception: {msg}', ['msg' => $e->getMessage()]);
         }
         if ($articleRawData !== null) {
-            $articleData = json_decode($articleRawData, true);
+            $article = $this->marshaller->unmarshall($articleRawData, '\App\Domain\Repositories\Model\Article');
         }
 
-        return $articleData;
+        return $article;
     }
 
+    /**
+     * TODO: handle 404 and other errors
+     *  - TODO: http://php.net/manual/de/function.file-get-contents.php
+     * TODO: What, if deleted is reported by a 410 but a 404 by content-api?
+     *
+     * @param int $articleId
+     * @return string
+     */
     protected function requestRawData(int $articleId): string {
 
         $start = microtime(true);

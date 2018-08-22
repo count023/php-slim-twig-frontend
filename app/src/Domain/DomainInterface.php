@@ -11,9 +11,9 @@ namespace App\Domain;
 interface DomainInterface {
 
     /**
-     * @param array $args the arguments passed by the request
-     * @return array of the data to be passed to the Responder for the template
+     * @param $payload Payload having in input the $request and the arguments passed by the request
+     * @return Payload enriched data to be passed to the Responder for the template
      */
-    public function fetchData(array $args): array;
+    public function fetchData(Payload $payload): Payload;
 
 }
