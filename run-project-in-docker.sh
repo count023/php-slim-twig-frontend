@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+docker stop fuzo-frontend
 docker build -t slim3-twig-app .
 cur_dir=`pwd`;
 echo "cur_dir: $cur_dir";

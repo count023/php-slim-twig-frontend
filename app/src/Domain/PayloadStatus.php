@@ -13,7 +13,7 @@ namespace App\Domain;
  *
  * @see https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
  */
-class PayloadStatus extends \SplEnum {
+class PayloadStatus {
 
     const __default = self::OK;
 

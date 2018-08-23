@@ -25,6 +25,7 @@ class Article extends AbstractDomain {
 
     /**
      * Article constructor.
+     *
      * @param LoggerInterface $logger
      * @param ArticleRepository $repository
      */
@@ -36,20 +37,19 @@ class Article extends AbstractDomain {
     }
 
     /**
-     * TODO: marshalling the input data!
-     *
      * @param $payload Payload the request and the arguments passed by the request
      * @return Payload of the data to be passed to the Responder for the template
      */
     public function fetchData(Payload $payload): Payload {
 
-        $articleData = $this->repository->fetchArticle($payload->getRequestPathInfo()[REQUEST_PATH_INFO_ARTICLE_ID]);
+        // TODO: could throw exceptions!
+        $article = $this->repository->fetchArticle($payload->getRequestPathInfo()[REQUEST_PATH_INFO_ARTICLE_ID]);
 
-        if ($articleData !== null) {
-            $articleData['fields']['body'] = $this->bodyParser->parse($articleData['fields']['body']);
-            $payload->setOutput(['article' => $articleData]);
+        if ($article !== null) {
+            $article->fields['body'] = $this->bodyParser->parse($article->fields['body']);
+            $payload->setOutput(['article' => $article]);
 
-            if ($payload->getRequest()->getUri() == $articleData['articleUri']) {
+            if ($payload->getRequest()->getUri() == $article->url) {
                 $payload->setStatus(PayloadStatus::OK);
             } else {
                 $payload->setStatus(PayloadStatus::MOVED_PERMANENTLY);

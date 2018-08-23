@@ -11,6 +11,12 @@
             "homepage": "http://www.a-kremin.de/"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../php-json-marshaller"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "App\\": "app/src"
@@ -22,6 +28,6 @@
         "slim/flash": "^0.1.0",
         "monolog/monolog": "^1.13",
         "aura/payload": "^3.0",
-        "anujrnair/php-json-marshaller": "^1.0"
+        "anujrnair/php-json-marshaller": "*"
     }
 }
